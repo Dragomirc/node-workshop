@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var querystring = require('querystring');
 var server = http.createServer(handler);
 
 var message = 'I\'m so happy to be part of the Node Girls workshop!';
@@ -30,6 +31,11 @@ function handler(request,response){
   else if (endpoint === '/girls') {
       response.writeHead(200);
       response.end('Hey girls');
+
+
+    }else if (endpoint === '/create-post') {
+          //write code bit
+        }
     }else {
     const extensionType = {
       html: 'text/html',
@@ -49,8 +55,23 @@ function handler(request,response){
     });
   }
 
-
 }
+var allTheData ='';
+
+request.on('data', function(chunkOfData) {
+  allTheData += chunkOfData;
+});
+
+request.on('end', function() {
+  var convertedData = querystring.parse(allTheData);
+  console.log(convertedData);
+  response.end();
+});
+
+
+
+
+
 server.listen(3000,function(){
   console.log('"Server is listenting on port 3000.Ready to accept requests"');
 });
