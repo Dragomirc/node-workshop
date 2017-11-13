@@ -1,0 +1,20 @@
+{
+  "name": "node-workshop",
+  "version": "1.0.0",
+  "description": "Let's make a blog with Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dragomirc/node-workshop.git"
+  },
+  "keywords": ["blog"],
+  "author": "Dragomir and Caroline",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dragomirc/node-workshop/issues"
+  },
+  "homepage": "https://github.com/Dragomirc/node-workshop#readme"
+}
