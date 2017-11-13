@@ -10,11 +10,16 @@
     "type": "git",
     "url": "git+https://github.com/Dragomirc/node-workshop.git"
   },
-  "keywords": ["blog"],
+  "keywords": [
+    "blog"
+  ],
   "author": "Dragomir and Caroline",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Dragomirc/node-workshop/issues"
   },
-  "homepage": "https://github.com/Dragomirc/node-workshop#readme"
+  "homepage": "https://github.com/Dragomirc/node-workshop#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
 }

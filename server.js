@@ -1,9 +1,8 @@
 var http = require('http');
 var fs = require('fs');
+var path = require('path');
 var server = http.createServer(handler);
-server.listen(3000,function(){
-  console.log('"Server is listenting on port 3000.Ready to accept requests"');
-});
+
 var message = 'I\'m so happy to be part of the Node Girls workshop!';
 
 function handler(request,response){
@@ -11,36 +10,47 @@ function handler(request,response){
   var method = request.method;
 
   if (endpoint === "/") {
+
     response.writeHead(200, {"Content-Type": "text/html"});
     fs.readFile(__dirname + "/public/index.html", function(error, file) {
       if (error) {
         console.log(error);
         return;
       }
-      respond.end(file);
+      response.end(file);
+
 
     });
 
-  }
-
-
-
-  switch (endpoint) {
-    case '/node':
+  }else if (endpoint === '/node') {
     response.writeHead(200);
     response.end('Node is fun');
+  }
 
-      break;
-      case '/girls':
+  else if (endpoint === '/girls') {
       response.writeHead(200);
       response.end('Hey girls');
-      break;
+    }else {
+    const extensionType = {
+      html: 'text/html',
+      css: 'text/css',
+      js: 'application/javascript',
+      ico: 'image/x-icon',
 
-    default:
-    response.writeHead(404);
-    response.end('that/s not a page!');
-    return;
+    };
+    var extension = endpoint.split('.')[1];
+    var filePath = path.join(__dirname,'/public',endpoint);
+    fs.readFile(filePath, function(error,file){
+      if(error){
+        response.end('error');
+      }
+      response.writeHead(200,'Content-Type: ' + extensionType[extension]);
+      response.end(file);
+    });
   }
 
 
 }
+server.listen(3000,function(){
+  console.log('"Server is listenting on port 3000.Ready to accept requests"');
+});
